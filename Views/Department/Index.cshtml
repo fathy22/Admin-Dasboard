@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MyDemo.Models.DepartmentViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Department</h1>
+<br />
+<a asp-controller="Department" asp-action="Create" class="btn btn-outline-info">Add New Department</a>
+<br /><br />
+<table class="table table-striped">
+    <tr><td>Department Name</td><td>Department Code</td><td>Transactions</td><td></td></tr>
+    @foreach (var item in Model)
+    {
+          <tr><td>@item.DepartmentName</td><td>@item.DepartmentCode</td><td><a asp-controller="Department" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Edit</a><td><a asp-controller="Department" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td></tr>
+    }
+</table>
+
+

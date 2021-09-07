@@ -1,0 +1,60 @@
+﻿@model IQueryable<MyDemo.Models.EmployeeViewModel>
+
+@using Microsoft.Extensions.Localization
+@using MyDemo.Resource.Employee
+@inject IStringLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewBag.Title = SharedLocalizer["Employee"];
+    var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+}
+@if (Culture == "en-US")
+{
+<h2 id="Myh">
+    <a asp-controller="Employee" asp-action="Index" asp-route-culture="ar-EG" class="btn btn-outline-info">@SharedLocalizer["Arabic"]</a>
+</h2>
+}
+
+@if (Culture == "ar-EG")
+{
+<h2 id="Myh">
+    <a asp-controller="Employee" asp-action="Index" asp-route-culture="en-US" class="btn btn-outline-info">@SharedLocalizer["English"]</a>
+</h2>
+}
+
+
+<h1 id="Myh2">@SharedLocalizer["EmployeeList"]</h1>
+<br />
+<a asp-controller="Employee" asp-action="Create" class="btn btn-outline-info">@SharedLocalizer["AddNewEmployee"]</a>
+<br />
+<table class="table table-striped">
+    <tr>
+        <th class="text-center">@SharedLocalizer["Name"]</th>
+        <th class="text-center">@SharedLocalizer["Salary"]</th>
+        <th class="text-center">@SharedLocalizer["DepartmentName"]</th>
+        <th class="text-center">@SharedLocalizer["DisrictName"]</th>
+        <th class="text-center">Photo</th>
+        <th class="text-center">CV</th>
+        <th class="text-center">@SharedLocalizer["Edit"]</th>
+        <th class="text-center">@SharedLocalizer["Details"]</th>
+        <th class="text-center">@SharedLocalizer["Delete"]</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">@item.Name</td>
+            <td class="text-center">@item.Salary</td>
+            <td class="text-center">@item.DepartmentName</td>
+            <td class="text-center">@item.DistrictName</td>
+            <td>
+                <img src="~/File/Photos/@item.PhotoName" width="30" height="30" />
+            </td>
+            <td>
+                <a href="~/File/Docs/@item.CvName">Download CV</a>
+            </td>
+            <td class="text-center"><a asp-controller="Employee" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">@SharedLocalizer["Edit"]</a></td>
+            <td class="text-center"><a asp-controller="Employee" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">@SharedLocalizer["Details"]</a></td>
+            <td class="text-center"><a asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">@SharedLocalizer["Delete"]</a></td>
+        </tr>
+    }
+</table>
+

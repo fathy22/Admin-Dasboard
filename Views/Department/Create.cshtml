@@ -1,0 +1,28 @@
+﻿@model MyDemo.Models.DepartmentViewModel
+@{
+    ViewBag.Title = "Create New Department";
+}
+
+<h1>Create New Department</h1>
+
+<form asp-controller="Department" asp-action="Create" method="post" class="form-group">
+    <label asp-for="DepartmentName"> Department Name:</label>
+    <input type="text" asp-for="DepartmentName" class="form-control" placeholder="Write Department Name" />
+    <span class="text-danger" asp-validation-for="DepartmentName"></span>
+    <br />
+    <label asp-for="DepartmentCode">Department Code:</label>
+    <input type="text" asp-for="DepartmentCode" class="form-control" placeholder="Write Department Code" />
+    <span class="text-danger" asp-validation-for="DepartmentName"></span>
+    <br />
+    <center>
+        <input type="submit" value="Save" class="btn-primary" />
+    </center>
+
+</form>
+
+    <script src="~/jquery/jquery.min.js"></script>
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
